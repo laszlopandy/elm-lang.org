@@ -2,12 +2,19 @@
 <head>
 </head>
 <body>
-	<h1>Elm Debugger</h1>
+	<style>
+		#buttonReset,
+		#buttonPlay,
+		#buttonStep {
+			display: none;
+		}
+	</style>
+	<h1>Signal Graph</h1>
 	<!-- <h3>Nodes</h3> -->
 	<button id="buttonReset">Reset</button>
 	<button id="buttonPlay">Play</button>
 	<button id="buttonStep">Step</button>
-	<div id="canvas" style="height: 400px; width: 400px;"></div>
+	<div id="sceneGraph" style="-webkit-transform: scale(0.8); -webkit-transform-origin: 0% 0%;"></div>
 	<div style='display: none;'><dl id='inputs'></dl></div>
 
 <script src="/debugger/viz.js"></script>
@@ -62,7 +69,7 @@ function pageLoaded() {
 
 
 	var inputDiv = document.getElementById('inputs');
-	var sceneGraphDiv = document.getElementById('canvas');
+	var sceneGraphDiv = document.getElementById('sceneGraph');
 
 	setInterval(function() {
 		inputDiv.innerHTML = '';
@@ -149,6 +156,9 @@ function filterReachableNodes(nodes, reachTo) {
   return reachable;
 };
 
+window.parent.addEventListener('load', pageLoaded);
+
+if (false){
 var Elm = parent.frames[2].Elm;
 document.getElementById('buttonReset').addEventListener('click', function(e) {
 	console.log("Reset");
@@ -163,6 +173,7 @@ document.getElementById('buttonStep').addEventListener('click', function(e) {
 	console.log("Step");
 	Elm.debuggerStep();
 });
+}
 </script>
 </body>
 </html>
